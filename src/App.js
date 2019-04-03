@@ -1,26 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Menu, Image } from "semantic-ui-react";
+import "./App.css";
 
 class App extends Component {
+  state = {};
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
   render() {
+    const { activeItem } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Menu>
+        <Menu.Item name="logo">
+          <Image src="/images/logo.png" size="mini" />
+        </Menu.Item>
+        <Menu.Item
+          name="editorials"
+          active={activeItem === "editorials"}
+          onClick={this.handleItemClick}
+        >
+          Editorials
+        </Menu.Item>
+
+        <Menu.Item
+          color="violet"
+          name="reviews"
+          active={activeItem === "reviews"}
+          onClick={this.handleItemClick}
+        >
+          Reviews
+        </Menu.Item>
+
+        <Menu.Item
+          name="upcomingEvents"
+          active={activeItem === "upcomingEvents"}
+          onClick={this.handleItemClick}
+        >
+          Upcoming Events
+        </Menu.Item>
+      </Menu>
     );
   }
 }
