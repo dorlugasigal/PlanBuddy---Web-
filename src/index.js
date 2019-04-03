@@ -1,9 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import 'semantic-ui-css/semantic.min.css';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import "./index.css";
+import "semantic-ui-css/semantic.min.css";
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -11,14 +8,13 @@ import * as serviceWorker from './serviceWorker';
 // // unregister() to register() below. Note this comes with some pitfalls.
 // // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
-import React from "react";
+// import React from "react";
 import { render } from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import Login from "./components/Login/Login.js";
 
 render(
-  <BrowserRouter>
+  <React.Fragment>
     <Login />
-  </BrowserRouter>,
+  </React.Fragment>,
   document.getElementById("root")
 );

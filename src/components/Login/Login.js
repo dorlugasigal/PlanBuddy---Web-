@@ -1,62 +1,71 @@
 import React from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment
-} from "semantic-ui-react";
+import { Button, Form, Grid, Image, Segment, Modal } from "semantic-ui-react";
+import "./Login.css";
 
-const Login = () => (
-  <div className="login">
-    {/*
-      Heads up! The styles below are necessary for the correct render of this example.
-      You can do same with CSS, the main idea is that all the elements up to the `Grid`
-      below must have a height of 100%.
-    */}
-    <style>
-      {`
-      body > div,
-      body > div > div,
-      body > div > div > div.login {
-        height: 100%;
-      }
-    `}
-    </style>
-    <Grid textAlign="center" style={{ height: "100%" }} verticalAlign="middle">
-      <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="teal" textAlign="center">
-          <Image src="/logo.png" /> Log-in to your account
-        </Header>
-        <Form size="large">
-          <Segment stacked>
-            <Form.Input
-              fluid
-              icon="user"
-              iconPosition="left"
-              placeholder="E-mail address"
-            />
-            <Form.Input
-              fluid
-              icon="lock"
-              iconPosition="left"
-              placeholder="Password"
-              type="password"
-            />
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { open: false };
+  }
 
-            <Button color="teal" fluid size="large">
-              Login
-            </Button>
-          </Segment>
-        </Form>
-        <Message>
-          New to us? <a href="#">Sign Up</a>
-        </Message>
-      </Grid.Column>
-    </Grid>
-  </div>
-);
+  open = () => {
+    this.setState({ open: true });
+  };
+  close = () => this.setState({ open: false });
+
+  render() {
+    const { open } = this.state;
+    return (
+      <Grid
+        className="login-form"
+        textAlign="center"
+        style={{ height: "100%" }}
+        verticalAlign="middle"
+      >
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Image src="/images/icon.png" size="small" centered />
+          <Form size="large">
+            <Segment stacked>
+              <Form.Input
+                fluid
+                icon="user"
+                iconPosition="left"
+                placeholder="Phone"
+              />
+              <Form.Input
+                fluid
+                icon="lock"
+                iconPosition="left"
+                placeholder="Password"
+                type="password"
+              />
+              <Modal
+                open={open}
+                size="small"
+                trigger={
+                  <Button onClick={this.open} color="pink" fluid size="large">
+                    Login
+                  </Button>
+                }
+              >
+                <Modal.Header>Modal #2</Modal.Header>
+                <Modal.Content>
+                  <p>That's everything!</p>
+                </Modal.Content>
+                <Modal.Actions>
+                  <Button
+                    icon="check"
+                    content="All Done"
+                    onClick={this.close}
+                  />
+                </Modal.Actions>
+              </Modal>
+            </Segment>
+          </Form>
+        </Grid.Column>
+      </Grid>
+    );
+  }
+}
 
 export default Login;
