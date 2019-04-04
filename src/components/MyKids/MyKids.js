@@ -15,14 +15,27 @@ import {
   Form,
   Segment
 } from "semantic-ui-react";
+import {
+  DateInput,
+  TimeInput,
+  DateTimeInput,
+  DatesRangeInput
+} from "semantic-ui-calendar-react";
 
 class MyKids extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      date: "",
+      time: "",
+      dateTime: "",
+      datesRange: "",
       openEdit: false,
       openDelete: false,
       openView: false,
+      openEditMorning: false,
+      openEditNoon: false,
+      openEditNight: false,
       kid: {
         name: "",
         phone: "",
@@ -45,32 +58,93 @@ class MyKids extends React.Component {
     kid.phone = e.target.value;
     this.setState({ kid });
   };
-
-  editClick() {}
+  handleChange = (event, { name, value }) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value });
+    }
+  };
 
   extra = (
-    <Button.Group widths="4">
-      <Popup
-        inverted
-        content="Edit Schedule"
-        trigger={
-          <Button onclick="editClick()" icon="edit" inverted color="pink" />
-        }
-      />
-      <Button.Or />
-
-      <Popup
-        inverted
-        content="View Schedule"
-        trigger={<Button icon="eye" inverted color="purple" />}
-      />
-      <Button.Or />
-      <Popup
-        inverted
-        content="Delete Schedule"
-        trigger={<Button icon="delete" inverted color="red" />}
-      />
-    </Button.Group>
+    <div>
+      <Button.Group widths="4">
+        <Popup />
+        <Modal trigger={<Button icon="edit" inverted color="pink" />}>
+          <Modal.Header>
+            <Icon name="edit" />
+            Edit Tasks{" "}
+            <Modal
+              size="small"
+              trigger={
+                <Button floated="right" inverted color="pink">
+                  <Icon name="plus" />
+                  Add
+                </Button>
+              }
+            >
+              <Modal.Header>
+                <Icon name="plus" />
+                Add a new task
+              </Modal.Header>
+              <Modal.Content>
+                <Form size="large">
+                  <Form.Input
+                    fluid
+                    icon="user circle"
+                    iconPosition="left"
+                    placeholder="Task Name"
+                    onChange={e => this.setState({ phone: e.target.value })}
+                  />
+                  <Form.Input
+                    fluid
+                    icon="image"
+                    iconPosition="left"
+                    placeholder="Image"
+                    onChange={e =>
+                      this.setState({ pass: e.target.value }, () =>
+                        console.log("t")
+                      )
+                    }
+                  />
+                  <DateTimeInput
+                    name="dateTime"
+                    placeholder="Date Time"
+                    //value={this.state.dateTime}
+                    iconPosition="left"
+                    onChange={() => this.handleChange()}
+                  />
+                </Form>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button inverted color="pink">
+                  Create Task
+                </Button>
+              </Modal.Actions>
+            </Modal>
+          </Modal.Header>
+          <Modal.Content image scrolling>
+            <Card
+              image="/images/person1.png"
+              header="Elliot Baker"
+              meta="Friend"
+              description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+              extra={this.extra}
+            />{" "}
+          </Modal.Content>
+        </Modal>
+        <Button.Or />
+        <Popup
+          inverted
+          content="View Schedule"
+          trigger={<Button icon="eye" inverted color="purple" />}
+        />
+        <Button.Or />
+        <Popup
+          inverted
+          content="Delete Schedule"
+          trigger={<Button icon="delete" inverted color="red" />}
+        />
+      </Button.Group>
+    </div>
   );
 
   render() {
@@ -120,10 +194,48 @@ class MyKids extends React.Component {
               />
             </Modal.Actions>
           </Modal>
-
           <Divider />
-          <Grid columns={5} centered>
-            <Grid.Row centered>
+          <Grid columns={3} centered divided>
+            <Grid.Row>
+              <Grid.Column>
+                <Card
+                  image="/images/person1.png"
+                  header="Elliot Baker"
+                  meta="Friend"
+                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  extra={this.extra}
+                />{" "}
+              </Grid.Column>
+              <Grid.Column>
+                <Card
+                  image="/images/person1.png"
+                  header="Elliot Baker"
+                  meta="Friend"
+                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  extra={this.extra}
+                />{" "}
+              </Grid.Column>
+              <Grid.Column>
+                <Card
+                  image="/images/person1.png"
+                  header="Elliot Baker"
+                  meta="Friend"
+                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  extra={this.extra}
+                />{" "}
+              </Grid.Column>
+            </Grid.Row>
+
+            <Grid.Row>
+              <Grid.Column>
+                <Card
+                  image="/images/person1.png"
+                  header="Elliot Baker"
+                  meta="Friend"
+                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  extra={this.extra}
+                />{" "}
+              </Grid.Column>
               <Grid.Column>
                 <Card
                   image="/images/person1.png"
