@@ -23,7 +23,6 @@ class App extends Component {
         </Menu.Item>
 
         <Menu.Item
-          color="violet"
           name="reviews"
           active={activeItem === "reviews"}
           onClick={this.handleItemClick}
