@@ -88,7 +88,9 @@ class Login extends React.Component {
                   </p>
                   <Form.Input style={{ width: "430px" }} />
                   <br />
-                  <a>Click here if you havnt received a text message.</a>
+                  <a href="/">
+                    Click here if you havnt received a text message.
+                  </a>
                 </Modal.Content>
                 <Modal.Actions>
                   <Button

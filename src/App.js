@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Image } from "semantic-ui-react";
+import { Menu, Image, Icon, Dropdown } from "semantic-ui-react";
 import "./App.css";
 
 import MyKids from "./components/MyKids/MyKids";
@@ -52,8 +52,15 @@ class App extends Component {
             active={activeItem === "premium"}
             onClick={this.handleItemClick}
           >
-            Buy Premuim
+            Buy Premium
           </Menu.Item>
+          <Menu.Menu position="right">
+            <Dropdown item text={"Welcome, " + localStorage.getItem("parent")}>
+              <Dropdown.Menu>
+                <Dropdown.Item icon="sign-out" text="Log off" />
+              </Dropdown.Menu>
+            </Dropdown>
+          </Menu.Menu>
         </Menu>
         {activeItem === "myKids" ? (
           <MyKids />

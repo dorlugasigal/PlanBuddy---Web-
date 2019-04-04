@@ -5,45 +5,27 @@ import { Constants } from "../../Constants";
 axios.defaults.baseURL = Constants.URLS.API_PATH;
 //region function export
 export default {
-  authenticate: authenticate,
-  registerUser: registerUser
+  addKid: addKid
 };
 
 //endregion
 
 //region actions
-function loginUser(user) {
+function newKid(user) {
   return {
-    type: actionTypes.LOGIN_USER,
+    type: actionTypes.NEW_KID,
     data: user
   };
 }
 
-function register(user) {
-  return {
-    type: actionTypes.REGISTER_USER,
-    data: user
-  };
-}
 //endregion
 
 //region thunk actions
-function authenticate(user) {
+function addKid(user) {
   return dispatch => {
     if (user) {
       axios.post("http://apiurl", { user: user }).then(user => {
-        dispatch(loginUser(user));
-      });
-    }
-  };
-}
-
-function registerUser(user) {
-  console.log(user);
-  return dispatch => {
-    if (user) {
-      axios.post("http://apiurl", { user: user }).then(user => {
-        dispatch(register(user));
+        dispatch(newKid(user));
       });
     }
   };

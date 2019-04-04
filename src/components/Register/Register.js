@@ -17,7 +17,7 @@ import "./Register.css";
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, phone: "", pass: "", email: "", name: "" };
+    this.state = { phone: "", pass: "", email: "", name: "" };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,7 +38,6 @@ class Register extends React.Component {
   };
 
   render() {
-    const { open } = this.state;
     return (
       <Grid
         className="register-form"
