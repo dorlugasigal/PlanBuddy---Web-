@@ -2,66 +2,75 @@ import React from "react";
 import { connect } from "react-redux";
 import actions from "../../redux/actions/account.actions";
 import {
-  Button,
-  Form,
+  Card,
+  Icon,
   Grid,
-  Image,
-  Segment,
+  Button,
+  Container,
+  Header,
+  Popup,
+  Divider,
   Modal,
-  Message,
-  Icon
+  Image,
+  Form,
+  Segment
 } from "semantic-ui-react";
-
-import "./Register.css";
 
 class MyKids extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false, phone: "", pass: "", email: "", name: "" };
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.account.isAuthenticated)
-      this.setState({
-        isAuthenticated: true,
-        user: nextProps.account.user
-      });
-  }
+  addKid = () => {};
 
-  signUp = () => {
-    this.props.register({
-      phone: this.state.phone,
-      password: this.state.pass,
-      email: this.state.email,
-      name: this.state.name
-    });
-  };
+  extra = (
+    <Button.Group widths="4">
+      <Popup
+        inverted
+        content="Edit Schedule"
+        trigger={<Button icon="edit" inverted color="pink" />}
+      />
+      <Button.Or />
+      <Popup
+        inverted
+        content="View Schedule"
+        trigger={<Button icon="eye" inverted color="purple" />}
+      />
+      <Button.Or />
+      <Popup
+        inverted
+        content="Delete Schedule"
+        trigger={<Button icon="delete" inverted color="red" />}
+      />
+    </Button.Group>
+  );
 
   render() {
-    const { open } = this.state;
     return (
-      <Grid
-        className="register-form"
-        textAlign="center"
-        style={{ height: "100%" }}
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Image src="/images/icon.png" size="small" centered />
-          <Form size="large">
-            <Segment stacked>
-              <Form.Input
-                fluid
-                icon="mail"
-                iconPosition="left"
-                placeholder="Email Address"
-                onChange={e => this.setState({ email: e.target.value })}
-              />
+      <Container>
+        <Header as="h2" icon textAlign="center">
+          <Icon name="users" circular inverted color="pink" />
+          <Header.Content>My Kids</Header.Content>
+        </Header>
+        <Modal
+          trigger={
+            <Button inverted color="pink">
+              <Icon name="plus" />
+              Add
+            </Button>
+          }
+        >
+          <Modal.Header>
+            <Icon name="plus circle" />
+            Add a new child
+          </Modal.Header>
+          <Modal.Content>
+            <Form size="large">
               <Form.Input
                 fluid
                 icon="user"
                 iconPosition="left"
-                placeholder="Full Name"
+                placeholder="Name"
                 onChange={e => this.setState({ name: e.target.value })}
               />
               <Form.Input
@@ -71,22 +80,28 @@ class MyKids extends React.Component {
                 placeholder="Phone"
                 onChange={e => this.setState({ phone: e.target.value })}
               />
-              <Form.Input
-                fluid
-                icon="lock"
-                iconPosition="left"
-                placeholder="Password"
-                type="password"
-                onChange={e => this.setState({ pass: e.target.value })}
-              />
-              <Button inverted color="pink" onClick={this.signUp}>
-                Sign Up
-                <Icon name="arrow right" />
-              </Button>
-            </Segment>
-          </Form>
-        </Grid.Column>
-      </Grid>
+            </Form>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button inverted color="pink" content="Add" onClick={this.close} />
+          </Modal.Actions>
+        </Modal>
+
+        <Divider />
+        <Grid columns={5} centered>
+          <Grid.Row centered>
+            <Grid.Column>
+              <Card
+                image="/images/person1.png"
+                header="Elliot Baker"
+                meta="Friend"
+                description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                extra={this.extra}
+              />{" "}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Container>
     );
   }
 }

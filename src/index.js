@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import { accountReducer } from "./redux/reducers/account.reducer";
+import { kidsReducer } from "./redux/reducers/kids.reducer";
+
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 
@@ -23,7 +25,8 @@ middleware = [...middleware, thunk, routerMiddleware(history)];
 
 const reducers = {
   account: accountReducer,
-  router: routerReducer
+  router: routerReducer,
+  kids: kidsReducer
 };
 
 const store = createStore(

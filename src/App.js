@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import { Menu, Image } from "semantic-ui-react";
 import "./App.css";
 
+import MyKids from "./components/MyKids/MyKids";
+import About from "./components/About/About";
+import Settings from "./components/Settings/Settings";
+import Premium from "./components/Premium/Premium";
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeItem: "mykids" };
+    this.state = { activeItem: "myKids" };
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    console.log("name: " + name);
+    this.setState({ activeItem: name });
+  };
 
   render() {
     const { activeItem } = this.state;
@@ -20,13 +28,12 @@ class App extends Component {
           </Menu.Item>
           <Menu.Item
             name="myKids"
-            active={activeItem === "mykids"}
+            active={activeItem === "myKids"}
             onClick={this.handleItemClick}
           >
             My Kids
           </Menu.Item>
           <Menu.Item
-            color="violet"
             name="about"
             active={activeItem === "about"}
             onClick={this.handleItemClick}
@@ -41,14 +48,14 @@ class App extends Component {
             Settings
           </Menu.Item>
           <Menu.Item
-            name="premuim"
-            active={activeItem === "premuim"}
+            name="premium"
+            active={activeItem === "premium"}
             onClick={this.handleItemClick}
           >
             Buy Premuim
           </Menu.Item>
         </Menu>
-        {activeItem === "mykids" ? (
+        {activeItem === "myKids" ? (
           <MyKids />
         ) : activeItem === "about" ? (
           <About />
