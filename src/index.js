@@ -6,12 +6,14 @@ import * as serviceWorker from "./serviceWorker";
 import { render } from "react-dom";
 import { createBrowserHistory as createHistory } from "history";
 import thunk from "redux-thunk";
+import { Provider } from "react-redux";
 import { routerReducer, routerMiddleware } from "react-router-redux";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import { accountReducer } from "./redux/reducers/account.reducer";
-import Login from "./components/Login/Login.js";
+import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
 const history = createHistory();
 
@@ -31,10 +33,15 @@ const store = createStore(
 );
 
 render(
-  <Router store={store}>
-    <Route path="/" component={App} />
-    <Route path="/login" component={Login} />
-  </Router>,
+  <Provider store={store}>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Switch>
+    </Router>
+  </Provider>,
   document.getElementById("root")
 );
 
