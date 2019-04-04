@@ -123,10 +123,9 @@ class MyKids extends React.Component {
           </Modal.Header>
           <Modal.Content image scrolling>
             <Card
-              image="/images/person1.png"
-              header="Elliot Baker"
-              meta="Friend"
-              description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+              image="https://png.pngtree.com/element_origin_min_pic/16/09/04/1657cbd76517afc.jpg"
+              header="Bus to School"
+              description="Get in to the Bus."
               extra={this.extra}
             />{" "}
           </Modal.Content>
@@ -199,28 +198,25 @@ class MyKids extends React.Component {
             <Grid.Row>
               <Grid.Column>
                 <Card
-                  image="/images/person1.png"
-                  header="Elliot Baker"
-                  meta="Friend"
-                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  image="https://react.semantic-ui.com/images/avatar/large/jenny.jpg"
+                  header="Noy Cohen"
+                  description="My sweet daughter."
                   extra={this.extra}
                 />{" "}
               </Grid.Column>
               <Grid.Column>
                 <Card
-                  image="/images/person1.png"
-                  header="Elliot Baker"
-                  meta="Friend"
-                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  image="https://react.semantic-ui.com/images/avatar/large/elliot.jpg"
+                  header="Eli Cohen"
+                  description="My lovely son."
                   extra={this.extra}
                 />{" "}
               </Grid.Column>
               <Grid.Column>
                 <Card
-                  image="/images/person1.png"
+                  image="https://react.semantic-ui.com/images/avatar/large/matthew.png"
                   header="Elliot Baker"
-                  meta="Friend"
-                  description="Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat."
+                  description="The coolest son."
                   extra={this.extra}
                 />{" "}
               </Grid.Column>
